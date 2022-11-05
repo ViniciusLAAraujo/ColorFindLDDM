@@ -1,96 +1,145 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:color_find/home.dart';
+
 
 class Page2 extends StatefulWidget{
-  final List<CameraDescription>? cameras;
-
-  const Page2({this.cameras, Key? key}) : super(key: key);
+  const Page2({Key? key}) : super(key: key);
 
   @override
   State<Page2> createState() => _Page2State();
 }
 
 class _Page2State extends State<Page2> {
-  late CameraController controller;
-  XFile? pictureFile;
+  List<CameraDescription> cameras = [];
+  CameraController? controller;
+  XFile? image;
+  Size? size;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    controller = CameraController(
-      widget.cameras![0],
-      ResolutionPreset.max,
+    _loadCameras();
+  }
+  _loadCameras() async {
+    try {
+      cameras = await availableCameras();
+      _startCamera();
+    } on CameraException catch (e) {
+      debugPrint(e.description);
+    }
+  }
+
+  _startCamera() {
+    if (cameras.isEmpty) {
+      debugPrint('Câmera não foi encontrada');
+    } else {
+      _previewCamera(cameras.first);
+    }
+  }
+
+  _previewCamera(CameraDescription camera) async {
+    final CameraController cameraController = CameraController(
+      camera,
+      ResolutionPreset.high,
+      enableAudio: false,
+      imageFormatGroup: ImageFormatGroup.jpeg,
     );
-    controller.initialize().then((_){
-      if(!mounted){
-        return;
-      }
+    controller = cameraController;
+
+    try {
+      await cameraController.initialize();
+    } on CameraException catch (e) {
+      debugPrint(e.description);
+    }
+
+    if (mounted) {
       setState(() {});
-    });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.value.isInitialized) {
-      return const SizedBox(
+    size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tire a Foto da Cor desejada!'),
+        backgroundColor: Colors.grey[900],
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: Container(
+        color: Colors.grey[900],
         child: Center(
-          child: CircularProgressIndicator(),
+          child: _arquivoWidget(),
         ),
+      ),
+      floatingActionButton: (image != null)
+          ? FloatingActionButton.extended(
+        onPressed: () => Navigator.pop(context),
+        label: const Text('Finalizar'),
+      )
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  _arquivoWidget() {
+    return SizedBox(
+      width: size!.width - 50,
+      height: size!.height - (size!.height / 3),
+      child: image == null
+          ? _cameraPreviewWidget()
+          : Image.file(
+        File(image!.path),
+        fit: BoxFit.contain,
+      ),
+    );
+  }
+  _cameraPreviewWidget() {
+    final CameraController? cameraController = controller;
+
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return const Text('Widget para Câmera que não está disponível');
+    } else {
+      return Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: [
+          CameraPreview(controller!),
+          _botaoCapturaWidget(),
+        ],
       );
     }
-
-    return Scaffold(
-
-      appBar: AppBar(
-        automaticallyImplyLeading:false,
-        title: Text(
-          "ColorFind",
-          style: TextStyle(
-            color: Theme
-                .of(context)
-                .primaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
+  }
+  _botaoCapturaWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: CircleAvatar(
+        radius: 32,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        child: IconButton(
+          icon: const Icon(
+            Icons.camera_alt,
+            color: Colors.white,
+            size: 30,
           ),
+          onPressed: tirarFoto,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: SizedBox(
-                height: 400,
-                width: 400,
-                child: CameraPreview(controller),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () async {
-                pictureFile = await controller.takePicture();
-                setState(() {});
-              },
-              child: const Text('Capture Image'),
-            ),
-          ),
-          if(pictureFile != null)
-            Image.network(
-              pictureFile!.path,
-              height: 250,
-              width: 250,
-            )
-          //Android/IOS == Image.file(File(pictureFile!.path))
+    );
+  }
+  tirarFoto() async {
+    final CameraController? cameraController = controller;
 
-        ],
-      ),
-
-      );
+    if (cameraController != null && cameraController.value.isInitialized) {
+      try {
+        XFile file = await cameraController.takePicture();
+        if (mounted) setState(() => image = file);
+      } on CameraException catch (e) {
+        debugPrint(e.description);
+      }
+    }
   }
 }
 

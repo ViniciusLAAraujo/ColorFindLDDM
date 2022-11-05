@@ -72,28 +72,19 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             enableFeedback: false,
-            onPressed: () async{
-              await availableCameras().then(
-                    (value) =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Page2(cameras: value,),
-                      ),
-                    ),
-              );
+            onPressed: () {
               setState(() {
                 pageIndex = 1;
               });
             },
             icon: pageIndex == 1
                 ? const Icon(
-              Icons.camera_alt_outlined,
+              Icons.color_lens_outlined,
               color: Colors.white,
               size: 35,
             )
                 : const Icon(
-              Icons.camera_alt_outlined,
+              Icons.color_lens_outlined,
               color: Colors.white,
               size: 35,
             ),
