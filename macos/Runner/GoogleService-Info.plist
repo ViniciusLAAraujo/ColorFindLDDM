@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>842874380689-lv5474g58116qd77iaet0o5j5397o5ou.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.842874380689-lv5474g58116qd77iaet0o5j5397o5ou</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1luo2Qs5BYmM6Om81t5SmqvZCmf-1w6g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>842874380689</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.colorfind.colorFind</string>
+	<key>PROJECT_ID</key>
+	<string>colorfindlddm</string>
+	<key>STORAGE_BUCKET</key>
+	<string>colorfindlddm.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:842874380689:ios:cfb469036b65ce948d3a30</string>
+</dict>
+</plist>

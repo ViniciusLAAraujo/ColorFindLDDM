@@ -1,7 +1,13 @@
+
+import 'package:camera/camera.dart';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:path/path.dart';
+
 
 
 class Page2 extends StatefulWidget{
@@ -16,6 +22,10 @@ class _Page2State extends State<Page2> {
   CameraController? controller;
   XFile? image;
   Size? size;
+  File? _photo;
+  final ImagePicker _picker = ImagePicker();
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
 
   @override
   void initState() {
@@ -115,18 +125,35 @@ class _Page2State extends State<Page2> {
   _botaoCapturaWidget() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
-      child: CircleAvatar(
-        radius: 32,
-        backgroundColor: Colors.black.withOpacity(0.5),
-        child: IconButton(
-          icon: const Icon(
-            Icons.camera_alt,
-            color: Colors.white,
-            size: 30,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircleAvatar(
+            radius: 32,
+            backgroundColor: Colors.black.withOpacity(0.5),
+            child: IconButton(
+              icon: const Icon(
+                Icons.camera_alt,
+                color: Colors.white,
+                size: 30,
+              ),
+              onPressed: tirarFoto,
+            ),
           ),
-          onPressed: tirarFoto,
-        ),
-      ),
+          CircleAvatar(
+            radius: 32,
+            backgroundColor: Colors.black.withOpacity(0.5),
+            child: IconButton(
+              icon: const Icon(
+                Icons.photo_album,
+                color: Colors.white,
+                size: 30,
+              ),
+              onPressed: EscolheFoto,
+            ),
+          ),
+        ],
+      )
     );
   }
   tirarFoto() async {
@@ -139,6 +166,33 @@ class _Page2State extends State<Page2> {
       } on CameraException catch (e) {
         debugPrint(e.description);
       }
+    }
+  }
+  EscolheFoto()  async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _photo = File(pickedFile.path);
+        uploadFile();
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+  uploadFile() async {
+
+    if (_photo == null) return;
+    final fileName = basename(_photo!.path);
+    final destination = 'files/$fileName';
+
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref(destination)
+          .child('file/');
+      await ref.putFile(_photo!);
+    } catch (e) {
+      print('error occured');
     }
   }
 }

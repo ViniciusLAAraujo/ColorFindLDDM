@@ -79,12 +79,12 @@ class _HomePageState extends State<HomePage> {
             },
             icon: pageIndex == 1
                 ? const Icon(
-              Icons.color_lens_outlined,
+              Icons.camera_alt,
               color: Colors.white,
               size: 35,
             )
                 : const Icon(
-              Icons.color_lens_outlined,
+              Icons.camera_alt,
               color: Colors.white,
               size: 35,
             ),
