@@ -26,16 +26,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0xffC4DFCB),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "ColorFind",
           style: TextStyle(
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.purple  ,
       ),
       body: pages[pageIndex],
       bottomNavigationBar: buildMyNavBar(context),
@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
   Container buildMyNavBar(BuildContext context) {
     return Container(
       height: 60,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+      decoration: const BoxDecoration(
+        color: Colors.purple,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,12 +60,12 @@ class _HomePageState extends State<HomePage> {
             },
             icon: pageIndex == 0
                 ? const Icon(
-              Icons.home_outlined,
+              Icons.info_outline,
               color: Colors.white,
               size: 35,
             )
                 : const Icon(
-              Icons.home_outlined,
+              Icons.info_outlined,
               color: Colors.white,
               size: 35,
             ),

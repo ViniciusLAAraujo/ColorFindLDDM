@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 
@@ -63,7 +64,21 @@ class MyItem extends StatelessWidget {
       ),
       title: Text('Material Color #${index + 1}'),
       subtitle: Text('#$hexRgb'),
+      trailing:Container(
+        width:MediaQuery.of(context).size.width * 0.25,
+        child: Row(
+          children:[
+            IconButton(
+                onPressed: (){},
+                icon: Icon(Icons.edit),
+            ),
+            IconButton(
+                onPressed: (){},
+                icon: Icon(Icons.delete_forever_outlined),
+            )
+          ]
+        ),
+      ),
     );
   }
 }
-

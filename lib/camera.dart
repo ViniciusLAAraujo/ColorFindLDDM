@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
 
-
+import 'package:http/http.dart' as http;
 
 class Page2 extends StatefulWidget{
   const Page2({Key? key}) : super(key: key);
@@ -128,28 +128,34 @@ class _Page2State extends State<Page2> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          CircleAvatar(
-            radius: 32,
-            backgroundColor: Colors.black.withOpacity(0.5),
-            child: IconButton(
-              icon: const Icon(
-                Icons.camera_alt,
-                color: Colors.white,
-                size: 30,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              radius: 32,
+              backgroundColor: Colors.black.withOpacity(0.5),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.camera_alt,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                onPressed: tirarFoto,
               ),
-              onPressed: tirarFoto,
             ),
           ),
-          CircleAvatar(
-            radius: 32,
-            backgroundColor: Colors.black.withOpacity(0.5),
-            child: IconButton(
-              icon: const Icon(
-                Icons.photo_album,
-                color: Colors.white,
-                size: 30,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              radius: 32,
+              backgroundColor: Colors.black.withOpacity(0.5),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.photo_album,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                onPressed: EscolheFoto,
               ),
-              onPressed: EscolheFoto,
             ),
           ),
         ],
@@ -180,6 +186,8 @@ class _Page2State extends State<Page2> {
       }
     });
   }
+
+
   uploadFile() async {
 
     if (_photo == null) return;
