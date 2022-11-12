@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   int pageIndex = 0;
 
   final pages = [
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffC4DFCB),
+      backgroundColor: Colors.purple,
       appBar: AppBar(
         title: const Text(
           "ColorFind",

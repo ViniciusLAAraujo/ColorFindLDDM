@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\vini5\\StudioProjects\\ColorFindLDDM\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ar\\values-ar.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\vini5\\.gradle\\caches\\transforms-3\\05304738454a7c6fee076a188df4c25d\\transformed\\browser-1.4.0\\res\\values-ar\\values-ar.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,155,253,361",
+                        "endColumns": "99,97,107,101",
+                        "endOffsets": "150,248,356,458"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2151,2251,2349,2457",
+                        "endColumns": "99,97,107,101",
+                        "endOffsets": "2246,2344,2452,2554"
+                    }
+                },
+                {
                     "source": "C:\\Users\\vini5\\.gradle\\caches\\transforms-3\\3ff720be07735976176520d1c05fb799\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ar\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -47,11 +64,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "24",
                         "startColumns": "4",
-                        "startOffsets": "2151",
+                        "startOffsets": "2559",
                         "endColumns": "100",
-                        "endOffsets": "2247"
+                        "endOffsets": "2655"
                     }
                 }
             ]
