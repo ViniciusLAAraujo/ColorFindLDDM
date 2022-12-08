@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:path/path.dart';
+import 'package:path/path.dart' as Path;
 import 'package:color_find/model/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:color_find/color_description.dart';
 
 class Page2 extends StatefulWidget{
   const Page2({Key? key}) : super(key: key);
@@ -181,6 +182,7 @@ class _Page2State extends State<Page2> {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
         uploadFile();
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Page4()));
       } else {
         print('No image selected.');
       }
