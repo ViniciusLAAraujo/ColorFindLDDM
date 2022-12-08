@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:testedb2/home.dart';
+import 'package:color_find/home.dart';
 import 'sql_helper.dart';
+import 'firebase_options.dart';
+
 
 class Page4 extends StatefulWidget {
   const Page4({Key? key}) : super(key: key);
@@ -12,8 +14,13 @@ class Page4 extends StatefulWidget {
 class _Page4State extends State<Page4> {
   @override
   Widget build(BuildContext context) {
-    String nome = 'azul';
-    String hex = '#0000ff';
+    String color = 'azul';
+    String name_color = '#0000ff';
+    // late DatabaseReference color;
+    // late DatabaseReference name_color;
+    //
+    // late StreamSubscription<DatabaseEvent> colorSubscription;
+    // late StreamSubscription<DatabaseEvent> name_colorSubscription;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -52,14 +59,14 @@ class _Page4State extends State<Page4> {
                         height: 30.0,
                       ),
                       Text(
-                        nome,
+                        color,
                         style: const TextStyle(
                           fontSize: 40.0,
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        hex,
+                        name_color,
                         style: const TextStyle(
                           fontSize: 30.0,
                           color: Colors.black,

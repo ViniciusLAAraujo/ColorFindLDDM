@@ -6,10 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart' as Path;
-import 'package:color_find/model/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart' as http;
 import 'package:color_find/color_description.dart';
+
 
 class Page2 extends StatefulWidget{
   const Page2({Key? key}) : super(key: key);
@@ -25,7 +24,6 @@ class _Page2State extends State<Page2> {
   Size? size;
   File? _photo;
   final ImagePicker _picker = ImagePicker();
-  ColorHelper helper = ColorHelper();
 
 
   @override
@@ -88,7 +86,8 @@ class _Page2State extends State<Page2> {
       ),
       floatingActionButton: (image != null)
           ? FloatingActionButton.extended(
-        onPressed: () => uploadFile(),
+        onPressed: () =>{ uploadFileCam(),
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Page4()))},
         label: const Text('Finalizar'),
       )
           : null,
@@ -169,7 +168,7 @@ class _Page2State extends State<Page2> {
     if (cameraController != null && cameraController.value.isInitialized) {
       try {
         XFile file = await cameraController.takePicture();
-        if (mounted) setState(() => _photo = File(file.path));
+        if (mounted) setState(() => image = file);
       } on CameraException catch (e) {
         debugPrint(e.description);
       }
@@ -190,10 +189,10 @@ class _Page2State extends State<Page2> {
   }
 
 
-  uploadFile() async {
-
+  uploadFileCam() async {
+    _photo = File(image!.path);
     if (_photo == null) return;
-    final fileName = basename(_photo!.path);
+    final fileName = Path.basename(_photo!.path);
 
     try {
 
@@ -201,13 +200,22 @@ class _Page2State extends State<Page2> {
       final mountainRef = ref.child('file/');
       final mountainImagesRef=mountainRef.child('$fileName');
       await mountainImagesRef.putFile(_photo!);
-      //String hexCor = await recebecorHex(fileName);
-      //String nomeCor = await recebecorNome(fileName);
-      String hexCor = '#ffffff';
-      String nomeCor ='White';
-      int id = 1;
-      Color c = Color(id,nomeCor,hexCor);
-      await helper.saveColor(c);
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  uploadFile() async {
+
+    if (_photo == null) return;
+    final fileName = Path.basename(_photo!.path);
+
+    try {
+
+      final ref = firebase_storage.FirebaseStorage.instance.ref();
+      final mountainRef = ref.child('file/');
+      final mountainImagesRef=mountainRef.child('$fileName');
+      await mountainImagesRef.putFile(_photo!);
     } catch (e) {
       print('$e');
     }
