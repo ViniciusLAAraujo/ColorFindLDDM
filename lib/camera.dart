@@ -9,7 +9,6 @@ import 'package:path/path.dart' as Path;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:color_find/color_description.dart';
 
-
 class Page2 extends StatefulWidget{
   const Page2({Key? key}) : super(key: key);
 

@@ -123,8 +123,6 @@ class _ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    String hex = '0xff0000ff';
-    String color = hex.replaceAll('#', '0xff');
     return Scaffold(
       body: _isLoading
           ? const Center(
@@ -139,7 +137,7 @@ class _ListPageState extends State<ListPage> {
                 aspectRatio: 1,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(int.parse(color)),
+                    color: Color(int.parse(_journals[index]['hex'].replaceAll('#', '0xff'))),
                     borderRadius: BorderRadius.circular(100)
                   ),
                 )
