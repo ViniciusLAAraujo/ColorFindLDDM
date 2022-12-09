@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\vini5\\StudioProjects\\ColorFindLDDM\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\vini5\\StudioProjects\\ColorTeste\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\vini5\\.gradle\\caches\\transforms-3\\05304738454a7c6fee076a188df4c25d\\transformed\\browser-1.4.0\\res\\values\\values.xml",
@@ -76,7 +76,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vini5\\StudioProjects\\ColorFindLDDM\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\vini5\\.gradle\\caches\\transforms-3\\8a5514d4341f323606d890e29d4268b9\\transformed\\lifecycle-runtime-2.3.1\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "42",
+                        "endOffsets": "93"
+                    },
+                    "to": {
+                        "startLines": "105",
+                        "startColumns": "4",
+                        "startOffsets": "6434",
+                        "endColumns": "42",
+                        "endOffsets": "6472"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\vini5\\StudioProjects\\ColorTeste\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
@@ -92,23 +109,6 @@
                         "endLines": "135,138",
                         "endColumns": "12,12",
                         "endOffsets": "9605,9774"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\vini5\\.gradle\\caches\\transforms-3\\8a5514d4341f323606d890e29d4268b9\\transformed\\lifecycle-runtime-2.3.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "42",
-                        "endOffsets": "93"
-                    },
-                    "to": {
-                        "startLines": "105",
-                        "startColumns": "4",
-                        "startOffsets": "6434",
-                        "endColumns": "42",
-                        "endOffsets": "6472"
                     }
                 },
                 {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:color_find/camera.dart';
-import 'package:color_find/colors.dart';
+import 'package:color_find/list.dart';
 import 'package:color_find/info.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   final pages = [
     const Page1(),
     const Page2(),
-    const Page3(),
+    const ListPage(),
   ];
 
   @override
